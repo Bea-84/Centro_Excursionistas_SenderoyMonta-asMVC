@@ -1,0 +1,226 @@
+﻿using Centro_Excursionistas_SenderoyMontañasMVC.Controller;
+using Centro_Excursionistas_SenderoyMontañasMVC.Model;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Centro_Excursionistas_SenderoyMontañasMVC.View
+{
+    internal class SocioView
+    {
+        
+        SocioController socioController;
+
+        public SocioView()
+        {
+
+        }
+
+        public SocioView(SocioController psocioController)
+        {
+            socioController = psocioController;
+        }
+
+        public void añadirSocioEstandar() 
+        {
+            Hashtable estandarHash=new Hashtable();
+
+            Console.WriteLine("Por favor,indique su numero de socio:");
+            string num=Console.ReadLine();
+
+            string nombre = socioController.getNumeroSocio(num); 
+            if(!nombre.Equals(""))
+            {
+                Console.WriteLine("Socio ya registrado un saludo\t"+nombre); 
+            }
+            else
+            {
+
+                Console.WriteLine("Introduzca su nombre");
+                string nombreSocio = Console.ReadLine();
+                Console.WriteLine("Introduzca su nif");
+                string nif = Console.ReadLine();
+                Console.WriteLine("Indique tipo de seguro 1/Básico 2/Completo");  
+                string seguro = Console.ReadLine(); 
+
+                estandarHash.Add("Num_socio",num  );
+                estandarHash.Add("Nombre", nombreSocio);
+                estandarHash.Add("Nif",nif );
+                estandarHash.Add("Tipo seguro",seguro); 
+
+                socioController.añadirSocioEstandar2(estandarHash); 
+            }
+        }
+
+        public void modificarTipoSeguro()
+        {
+            Hashtable estandarHash=new Hashtable(); 
+
+            Console.WriteLine("Por favor,indique su numero de socio:");
+            string num = Console.ReadLine();
+
+            string nombre = socioController.getNumeroSocio(num);
+            if (!nombre.Equals(""))
+            {
+                Console.WriteLine("Bienvenido/a" + nombre);
+                Console.WriteLine("¿Necesitas cambiar el tipo de seguro contratado?"); 
+                string ok=Console.ReadLine();
+                if(ok.ToUpper().Equals("S"))
+                {
+                    Console.WriteLine("Indique tipo de seguro 1/Básico 2/Completo");
+                    string seguro = Console.ReadLine();
+
+                    estandarHash.Add("Tipo seguro",seguro );
+                    estandarHash.Add("Numero",num);
+
+                    socioController.modificarTipoSeguro(estandarHash); 
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Socio inexistente");
+            }
+
+
+
+        }
+        
+        public void añadirSocioFederado() 
+        {
+            Hashtable federadoHash = new Hashtable();
+
+            Console.WriteLine("Por favor,indique su numero de socio:");
+            string num = Console.ReadLine();
+
+            string nombre = socioController.getNumeroSocio(num);  
+            if (!nombre.Equals(""))
+            {
+                Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
+            }
+            else
+            {
+                Console.WriteLine("Introduzca su nombre");
+                string nombreSocio = Console.ReadLine();
+                Console.WriteLine("Introduzca su nif");
+                string nif = Console.ReadLine();
+                Console.WriteLine("Indique el nombre de su federación");
+                string federacion=Console.ReadLine();
+
+                federadoHash.Add("Num_socio", num);
+                federadoHash.Add("Nombre", nombreSocio);
+                federadoHash.Add("Nif",nif);
+                federadoHash.Add("Federación",federacion);
+
+                socioController.añadirSocioFederado2(federadoHash);  
+            }
+        }
+
+        public void añadirSocioInfantil()
+        {
+            Hashtable infantilHash=new Hashtable();
+
+            Console.WriteLine("Por favor,indique el numero de socio de su tutor:");
+            string num = Console.ReadLine();
+
+            string nombre = socioController.getNumeroSocio(num);
+            if (!nombre.Equals(""))
+            {
+                Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
+            }
+            else
+            {
+                Console.WriteLine("Indique su numero socio:");
+                string num_socio=Console.ReadLine();
+                Console.WriteLine("Indique su nombre:");
+                string nombreSocio=Console.ReadLine();
+
+                infantilHash.Add("Num_socio", num_socio);
+                infantilHash.Add("Nombre",nombreSocio);
+                infantilHash.Add("Num_socioTutor", num);
+
+                socioController.añadirSocioInfantil2(infantilHash); 
+            }
+
+
+        } 
+
+        public void eliminarSocio(List<string>listaSocios,int tipo) //TODO
+        {
+            
+            Console.WriteLine("Por favor,indique su numero de socio:");
+            string num = Console.ReadLine();
+
+            string nombre = socioController.getNumeroSocio(num);
+            if (!nombre.Equals(""))
+            {
+                Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
+                Console.WriteLine("Seguro que quieres abandonar centro excursionistas?");
+                string ok = Console.ReadLine();
+                if(ok.ToUpper().Equals("S"))
+                {
+                    
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Socio inexistente"); 
+            }
+        }
+        public void mostrarSocioPorTipo(List<string>listaSocios,int tipo) 
+        {
+            switch(tipo)
+            {
+                case 1:
+                    Console.WriteLine("Numero socio\tNombre\tNif\tTipo de seguro:");
+                    Console.WriteLine("==========================================");
+                    break;
+                case 2:
+                    Console.WriteLine("Numero socio\tNombre\tNif:");
+                    Console.WriteLine("=========================="); 
+                    break;
+                case 3:
+                    Console.WriteLine("Numero socio\tNombre");
+                    Console.WriteLine("====================");  
+                    break;
+
+            }
+            foreach(string socioString in listaSocios)
+            {
+                Console.WriteLine(socioString);   
+            } 
+
+        }
+
+        public void mostrarFacturaMensualSocio() //falta 
+        {
+
+        }
+
+        public static int seleccionarTipoSocio() //este método me sirve para mostrar por tipo/eliminar
+        { 
+            int opcion;
+
+                do
+                {
+                   
+                    Console.WriteLine("Seleccione tipo de socio : 1) Estandar 2) Federado 3) Infantil 0) Salir");
+                    opcion = int.Parse(Console.ReadLine());
+
+                } while (opcion < 0 || opcion > 3);
+                return opcion;
+            
+        } 
+
+       
+    } 
+}
