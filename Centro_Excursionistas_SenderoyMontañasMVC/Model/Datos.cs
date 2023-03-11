@@ -39,11 +39,11 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
 
             Federacion federacion = new Federacion(); //creo objeto federación
             federacion.Nombre = "On";
-            federacion.Codigo = 1;
+            federacion.Codigo = "1";
             federaciones.Add(federacion);
             federacion = new Federacion();
             federacion.Nombre = "In";
-            federacion.Codigo = 2;
+            federacion.Codigo = "2";
             federaciones.Add(federacion);
         }
 
@@ -102,44 +102,6 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return "";
         }
 
-        public List<string> listaSociosByTipo(int tipo)
-        {
-            List<string> socioEncontrado = new List<string>();
-            switch (tipo)
-            {
-                case 1:
-                    foreach (Socio socio in socios)
-                    {
-                        if (socio is Estandar)
-                        {
-                            socioEncontrado.Add((socio as Estandar).ToString());
-                        }
-                    }
-                    break;
-                case 2:
-                    foreach (Socio socio in socios)
-                    {
-                        if (socio is Federado)
-                        {
-                            socioEncontrado.Add((socio as Federado).ToString());
-                        }
-                    }
-                    break;
-                case 3:
-                    foreach (Socio socio in socios)
-                    {
-                        if (socio is Infantil)
-                        {
-                            socioEncontrado.Add((socio as Infantil).ToString());
-                        }
-                    }
-                    break;
-
-
-            }
-            return socioEncontrado;
-        }
-
         public void addSocioEstandar(Hashtable estandarHash)
         {
             Estandar estandar = new Estandar();
@@ -177,6 +139,31 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return null;
         }
 
+        public void addmodificarTipoSeguro(Hashtable estandarHash)
+        {
+            Seguro seguro = new Seguro();
+            string opcionSeguro = (string)estandarHash["Tipo seguro"];
+            seguro = getTipoSeguroByOpcion(opcionSeguro);
+
+            string num = (string)estandarHash["Numero"];
+            Socio socio = getSocioEstandarByNum(num);
+            (socio as Estandar).Seguro = seguro;
+
+        }
+
+        public Socio getSocioEstandarByNum(string num)
+        {
+            foreach (Socio socio in socios)
+            {
+                if ((socio is Estandar) && socio.Num_socio.Equals(num))
+                {
+                    return socio;
+                }
+
+            }
+            return null;
+        }
+
         public void addSocioFederado(Hashtable federadoHash)
         {
             Federado federado = new Federado();
@@ -202,45 +189,69 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
                 }
             }
             return null;
-            Console.WriteLine("Hola marc");
-        }
+
+        } 
 
         public void addSocioInfantil(Hashtable infantilHash)
         {
             Infantil infantil = new Infantil();
             infantil.Num_socio = (string)infantilHash["Num_socio"];
             infantil.Nombre = (string)infantilHash["Nombre"];
-            infantil.Num_socioTutor = (string)infantilHash["Num_SocioTutor"];
+            infantil.Num_socioTutor = (string)infantilHash["Num_socioTutor"];
 
-            socios.Add(infantil);
+            socios.Add(infantil); 
         }
 
-        public void addmodificarTipoSeguro(Hashtable estandarHash)
+        public void eliminarSocio(string num)
         {
-            Seguro seguro = new Seguro();
-            string opcionSeguro = (string)estandarHash["Tipo seguro"];
-            seguro = getTipoSeguroByOpcion(opcionSeguro);
-
-            string num = (string)estandarHash["Numero"];
-            Socio socio = getSocioEstandarByNum(num);
-            (socio as Estandar).Seguro = seguro;
-
-        }
-
-        public Socio getSocioEstandarByNum(string num)
-        {
-            foreach (Socio socio in socios)
+            foreach(Socio socio in socios)
             {
-                if ((socio is Estandar) && socio.Num_socio.Equals(num))
+                if(socio.Num_socio.Equals(num))
                 {
-                    return socio;
+                    socios.Remove(socio);
+                    return; 
                 }
+            }
+
+        }
+
+        public List<string> listaSociosByTipo(int tipo)
+        {
+            List<string> socioEncontrado = new List<string>();
+            switch (tipo)
+            {
+                case 1:
+                    foreach (Socio socio in socios)
+                    {
+                        if (socio is Estandar)
+                        {
+                            socioEncontrado.Add((socio as Estandar).ToString());
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (Socio socio in socios)
+                    {
+                        if (socio is Federado)
+                        {
+                            socioEncontrado.Add((socio as Federado).ToString());
+                        }
+                    }
+                    break;
+                case 3:
+                    foreach (Socio socio in socios)
+                    {
+                        if (socio is Infantil)
+                        {
+                            socioEncontrado.Add((socio as Infantil).ToString());
+                        }
+                    }
+                    break;
+
 
             }
-            return null;
-        } 
-
-
+            return socioEncontrado;
+        }
 
         //-----------------------------------------------------------------------------------------------------------------------------------
 

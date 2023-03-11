@@ -72,8 +72,8 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
             //devolvera las excursiones que hay entre estas dos fechas
 
-            Console.WriteLine("A continuación podrás ver las siguientes excursiones:");
-            Console.WriteLine("=====================================================");
+            Console.WriteLine("Excursiones disponibles en las fechas seleccionadas:");
+            Console.WriteLine("===================================================="); 
             foreach(string excursionstring in listaExcursiones)
             {
                 Console.WriteLine(excursionstring);

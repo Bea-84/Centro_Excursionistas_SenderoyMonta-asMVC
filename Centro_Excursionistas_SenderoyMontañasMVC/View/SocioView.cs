@@ -68,7 +68,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             if (!nombre.Equals(""))
             {
                 Console.WriteLine("Bienvenido/a" + nombre);
-                Console.WriteLine("¿Necesitas cambiar el tipo de seguro contratado?"); 
+                Console.WriteLine("¿Necesitas cambiar el tipo de seguro contratado?(s/n)"); 
                 string ok=Console.ReadLine();
                 if(ok.ToUpper().Equals("S"))
                 {
@@ -111,11 +111,13 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
                 string nif = Console.ReadLine();
                 Console.WriteLine("Indique el nombre de su federación");
                 string federacion=Console.ReadLine();
+               
 
                 federadoHash.Add("Num_socio", num);
                 federadoHash.Add("Nombre", nombreSocio);
                 federadoHash.Add("Nif",nif);
                 federadoHash.Add("Federación",federacion);
+               
 
                 socioController.añadirSocioFederado2(federadoHash);  
             }
@@ -150,9 +152,10 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
         } 
 
-        public void eliminarSocio(List<string>listaSocios,int tipo) //TODO
+        public void eliminarSocioByNum() 
         {
-            
+            Hashtable socioHash = new Hashtable();
+
             Console.WriteLine("Por favor,indique su numero de socio:");
             string num = Console.ReadLine();
 
@@ -160,37 +163,40 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             if (!nombre.Equals(""))
             {
                 Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
-                Console.WriteLine("Seguro que quieres abandonar centro excursionistas?");
-                string ok = Console.ReadLine();
+                Console.WriteLine("¿Seguro que deseas darte de baja?(s/n)");
+                string ok=Console.ReadLine();
                 if(ok.ToUpper().Equals("S"))
                 {
-                    
+                    socioController.eliminarSocio(num);
                 }
                 else
                 {
-                    Console.WriteLine();
+                    Console.WriteLine("Gracias por confiar en nosotros");
                 }
+
             }
             else
             {
-                Console.WriteLine("Socio inexistente"); 
+                Console.WriteLine("Socio inexistente");
             }
+
         }
-        public void mostrarSocioPorTipo(List<string>listaSocios,int tipo) 
+
+        public void mostrarSocioPorTipo(List<string>listaSocios,int tipo)  
         {
             switch(tipo)
             {
                 case 1:
-                    Console.WriteLine("Numero socio\tNombre\tNif\tTipo de seguro:");
-                    Console.WriteLine("==========================================");
+                    Console.WriteLine("Numero socio\tNombre\tNif\tPrecio seguro\tTipo de seguro:");
+                    Console.WriteLine("============\t======\t===\t=============\t===============");
                     break;
                 case 2:
-                    Console.WriteLine("Numero socio\tNombre\tNif:");
-                    Console.WriteLine("=========================="); 
+                    Console.WriteLine("Numero socio\tNombre\tNif\tNombre federación\tCódigo federación:");
+                    Console.WriteLine("============\t======\t===\t====================================="); 
                     break;
                 case 3:
-                    Console.WriteLine("Numero socio\tNombre");
-                    Console.WriteLine("====================");  
+                    Console.WriteLine("Numero socio\tNombre\tNumero socio tutor");
+                    Console.WriteLine("============\t======\t==================");  
                     break;
 
             }
@@ -206,7 +212,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
         }
 
-        public static int seleccionarTipoSocio() //este método me sirve para mostrar por tipo/eliminar
+        public static int seleccionarTipoSocio() 
         { 
             int opcion;
 

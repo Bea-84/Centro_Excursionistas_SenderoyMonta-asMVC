@@ -102,14 +102,14 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 
         public void eliminarSocio() 
         {
-            int tipoSocio;
-            tipoSocio = SocioView.seleccionarTipoSocio();
-            List<string> listaSocios = Datos.listaSociosByTipo(tipoSocio);
+            
             SocioController socioController = new SocioController(Datos);
-            SocioView socioView = new SocioView(socioController);
-            socioView.eliminarSocio(listaSocios, tipoSocio);
 
-        }
+            SocioView socioView = new SocioView(socioController);
+
+            socioView.eliminarSocioByNum(); 
+
+        } 
 
         public void mostrarSociosPorTipo() 
         {
@@ -162,7 +162,10 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             Datos.addSocioInfantil(infantilHash); 
         }
 
-
+        public void eliminarSocio(string num)
+        {
+            Datos.eliminarSocio(num);
+        }
 
     }   
 } 
