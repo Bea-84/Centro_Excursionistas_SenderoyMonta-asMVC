@@ -13,7 +13,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
         Datos datos;
         MenuView vista;
        
-        public Controller(Datos datos, MenuView vista,ExcursionController excursionController,SocioController socioController)
+        public Controller(Datos datos, MenuView vista,ExcursionController excursionController,SocioController socioController,InscripcionController inscripcionController)
         {
             this.datos = datos;
             this.vista = vista;
@@ -74,7 +74,11 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 
         public void gestionMenuinscripciones()
         {
-           
+            InscripcionController inscripcionController = new InscripcionController(datos);
+
+            InscripcionView inscripcionView = new InscripcionView(inscripcionController);
+
+            inscripcionController.gestionMenuInscripciones();
         } 
       
 

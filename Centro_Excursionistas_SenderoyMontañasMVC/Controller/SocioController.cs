@@ -62,7 +62,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             } while (!salir);
         }
 
-        //métodos menú
+        //métodos menú 
 
         public void añadirSocioEstandar() 
         {
@@ -123,15 +123,9 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 
         public void mostrarFacturaMensualSocio() //falta
         {
-            SocioController socioController = new SocioController(Datos);
+          
 
-            SocioView socioView = new SocioView(socioController);
-
-            socioView.mostrarFacturaMensualSocio();
-
-        }
-
-
+        } 
      
         //-------------------------------------------------------------------------------------------------------------------------
 

@@ -209,7 +209,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
         public void mostrarFacturaMensualSocio() //falta 
         {
-
+          
         }
 
         public static int seleccionarTipoSocio() 

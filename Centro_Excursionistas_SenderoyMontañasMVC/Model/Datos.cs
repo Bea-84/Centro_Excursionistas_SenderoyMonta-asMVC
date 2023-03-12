@@ -28,20 +28,20 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             inscripciones = new List<Inscripcion>();
             federaciones = new List<Federacion>();
 
-            Seguro seguro = new Seguro();//creo objeto seguro
+            Seguro seguro = new Seguro();//creo objeto seguro 1
             seguro.Precio = 100;
             seguro.TipoSeguro = TipoSeguro.basico;
             seguros.Add(seguro);
-            seguro = new Seguro();
+            seguro = new Seguro(); //creo objeto seguro 2
             seguro.Precio = 200;
             seguro.TipoSeguro = TipoSeguro.completo;
             seguros.Add(seguro);
 
-            Federacion federacion = new Federacion(); //creo objeto federación
+            Federacion federacion = new Federacion(); //creo objeto federación 1
             federacion.Nombre = "On";
             federacion.Codigo = "1";
             federaciones.Add(federacion);
-            federacion = new Federacion();
+            federacion = new Federacion(); //creo objeto federación 2
             federacion.Nombre = "In";
             federacion.Codigo = "2";
             federaciones.Add(federacion);
@@ -256,6 +256,12 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
         //-----------------------------------------------------------------------------------------------------------------------------------
 
         //inscripciones
+
+        public void addInscripcion(Hashtable inscripcionHash)
+        {
+            Inscripcion inscripcion = new Inscripcion();
+            inscripcion.Num_inscripcion = (string)inscripcionHash["Numero inscripcion"];
+        }
 
 
 
