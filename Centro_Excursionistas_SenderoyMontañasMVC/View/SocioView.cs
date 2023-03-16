@@ -227,15 +227,15 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
                 {
                     case "1":
                         Console.WriteLine("Indique el mes,para poder mostrar factura");
-                        string mesEstandar=Console.ReadLine();  
+                        int mesEstandar = int.Parse(Console.ReadLine());  
                         break;
                     case "2":
                         Console.WriteLine("Indique el mes,para poder mostrar factura");
-                        string mesfederado=Console.ReadLine();  
+                        int mesfederado=int.Parse(Console.ReadLine());  
                         break;
                     case "3":
                         Console.WriteLine("Indique el mes,para poder mostrar factura");
-                        string mesInfantil=Console.ReadLine();  
+                        int mesInfantil=int.Parse(Console.ReadLine());  
                         break;  
                 }
             }
