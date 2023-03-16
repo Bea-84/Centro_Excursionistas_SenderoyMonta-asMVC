@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
 {
-    internal class Socio
+    internal abstract class Socio
     {
         private string num_socio;
         private string nombre;

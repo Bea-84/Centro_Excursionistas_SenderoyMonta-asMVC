@@ -21,12 +21,6 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             
         }  
         
-        public string getCodigo(int codigo)
-        {
-            string descripcionExcursion = datos.getDescripcionExcursionByCodigo(codigo);
-            return descripcionExcursion;   
-        }
-
         public void gestionMenuExcursiones()
         {
             bool salir = false;
@@ -85,6 +79,12 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
         public List<string> getFecha(DateTime fechaInicio,DateTime fechaFin)
         {
              return datos.getExcursionPorFecha(fechaInicio,fechaFin); 
-        }  
+        }
+
+        public string getCodigo(string codigo)
+        {
+            string descripcionExcursion = datos.getDescripcionExcursionByCodigo(codigo);
+            return descripcionExcursion;
+        } 
     }  
 } 

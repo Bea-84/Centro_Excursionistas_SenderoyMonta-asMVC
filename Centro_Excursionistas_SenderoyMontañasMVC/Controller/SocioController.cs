@@ -121,11 +121,15 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             socioView.mostrarSocioPorTipo(listaSocios, tipoSocio); 
         }
 
-        public void mostrarFacturaMensualSocio() //falta
+        public void mostrarFacturaMensualSocio() 
         {
-          
+            SocioController socioController = new SocioController(Datos);
 
-        } 
+            SocioView socioView = new SocioView(socioController);
+
+            socioView.mostrarFacturaMensualSocio();
+
+        }  
      
         //-------------------------------------------------------------------------------------------------------------------------
 
@@ -154,12 +158,16 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
         public void añadirSocioInfantil2(Hashtable infantilHash)
         {
             Datos.addSocioInfantil(infantilHash); 
-        }
+        } 
 
         public void eliminarSocio(string num)
         {
             Datos.eliminarSocio(num);
         }
+
+      
+
+      
 
     }   
 } 

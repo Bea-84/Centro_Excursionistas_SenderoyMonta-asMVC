@@ -47,9 +47,9 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             federaciones.Add(federacion);
         }
 
-        //excursiones
+        //excursiones 
 
-        public string getDescripcionExcursionByCodigo(int codigo)
+        public string getDescripcionExcursionByCodigo(string codigo)
         {
             foreach (Excursion excursion in excursiones)
             {
@@ -61,14 +61,15 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return "";
         }
 
-        public void addExcursion(Hashtable excursionHash)
+        public void addExcursion(Hashtable excursionHash) 
         {
             Excursion excursion = new Excursion();
-            excursion.Codigo = (int)excursionHash["Código"];
+            excursion.Codigo = (string)excursionHash["Código"];
             excursion.Descripcion = (string)excursionHash["Descripción"];
             excursion.Fecha = (DateTime)excursionHash["Fecha"];
-            excursion.Num_dias = (int)excursionHash["Num_dias"];
             excursion.Precio = (int)excursionHash["Precio"];
+            excursion.Num_dias = (int)excursionHash["Num_dias"];
+            
 
             excursiones.Add(excursion);
         }
@@ -192,7 +193,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
 
         } 
 
-        public void addSocioInfantil(Hashtable infantilHash)
+        public void addSocioInfantil(Hashtable infantilHash) 
         {
             Infantil infantil = new Infantil();
             infantil.Num_socio = (string)infantilHash["Num_socio"];
@@ -206,13 +207,25 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
         {
             foreach(Socio socio in socios)
             {
-                if(socio.Num_socio.Equals(num))
+                if(socio.Num_socio.Equals(num) && !socioTieneExcursion(num))
                 {
                     socios.Remove(socio);
                     return; 
                 }
             }
 
+        } 
+
+        public bool socioTieneExcursion(string num) 
+        {
+            foreach(Inscripcion inscripcion in inscripciones)
+            {
+                if(inscripcion.Socio.Num_socio.Equals(num))
+                {
+                    return true;
+                }
+            }
+            return  false;
         }
 
         public List<string> listaSociosByTipo(int tipo)
@@ -253,15 +266,101 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return socioEncontrado;
         }
 
+
         //-----------------------------------------------------------------------------------------------------------------------------------
 
-        //inscripciones
+        //inscripciones 
 
         public void addInscripcion(Hashtable inscripcionHash)
         {
             Inscripcion inscripcion = new Inscripcion();
             inscripcion.Num_inscripcion = (string)inscripcionHash["Numero inscripcion"];
+
+            string numerosocio = (string)inscripcionHash["Socio"];
+            Socio socio = getNombreSocio(numerosocio); 
+            inscripcion.Socio = socio;
+
+            string cod_Excursion = (string)inscripcionHash["Código excursion"];
+            Excursion excursion = getExcursionByCodigo(cod_Excursion);
+            inscripcion.Excursion = excursion;  
+
+            inscripciones.Add(inscripcion); 
+
         }
+
+        public Socio getNombreSocio(string num)
+        {
+            foreach(Socio socio in socios)
+            {
+                if(socio.Num_socio.Equals(num))
+                {
+                    return socio;
+                }
+            }
+            return null;
+        }
+        
+        public Excursion getExcursionByCodigo(string codigo)  
+        {
+            foreach(Excursion excursion in excursiones)
+            {
+                if(excursion.Codigo.Equals(codigo))
+                {
+                    return excursion;
+                }
+            }
+            return null; 
+        }
+
+        public List<string> getInscripcionesPorSocio(string num) 
+        {
+            List<string> listaInscripciones = new List<string>();
+
+            foreach (Inscripcion inscripcion in inscripciones)
+            {
+                if (inscripcion.Socio.Num_socio.Equals(num))
+                {
+                    listaInscripciones.Add(inscripcion.ToString()); 
+                }
+             
+            }
+            return listaInscripciones; 
+        }  
+
+        public void eliminarInscripcionByNum(string num_inscripcion)
+        {
+            foreach(Inscripcion inscripcion in inscripciones)
+            {
+                if(inscripcion.Num_inscripcion.Equals(num_inscripcion) && inscripcion.Excursion.Fecha > DateTime.Today)
+                {
+                    inscripciones.Remove(inscripcion); 
+                    return;
+                }
+            }
+        } 
+
+        public Excursion getExcursion(string codigo) 
+        {
+            foreach (Excursion excursion in excursiones)
+            {
+                if (excursion.Codigo.Equals(codigo))
+                {
+                    return excursion;
+                }
+            }
+            return null;
+        }
+
+      
+
+
+       
+
+
+
+
+
+
 
 
 

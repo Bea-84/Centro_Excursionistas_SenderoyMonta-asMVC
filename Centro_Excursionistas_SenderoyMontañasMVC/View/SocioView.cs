@@ -55,7 +55,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
                 socioController.añadirSocioEstandar2(estandarHash); 
             }
-        }
+        } 
 
         public void modificarTipoSeguro()
         {
@@ -121,7 +121,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
                 socioController.añadirSocioFederado2(federadoHash);  
             }
-        }
+        } 
 
         public void añadirSocioInfantil()
         {
@@ -154,12 +154,11 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
         public void eliminarSocioByNum() 
         {
-            Hashtable socioHash = new Hashtable();
-
+            
             Console.WriteLine("Por favor,indique su numero de socio:");
             string num = Console.ReadLine();
 
-            string nombre = socioController.getNumeroSocio(num);
+            string nombre = socioController.getNumeroSocio(num); 
             if (!nombre.Equals(""))
             {
                 Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
@@ -167,17 +166,17 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
                 string ok=Console.ReadLine();
                 if(ok.ToUpper().Equals("S"))
                 {
-                    socioController.eliminarSocio(num);
+                    socioController.eliminarSocio(num);      
                 }
                 else
                 {
-                    Console.WriteLine("Gracias por confiar en nosotros");
+                    Console.WriteLine("Gracias por confiar en nosotros"); 
                 }
 
             }
             else
             {
-                Console.WriteLine("Socio inexistente");
+                Console.WriteLine("Socio inexistente"); 
             }
 
         }
@@ -207,11 +206,44 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
         }
 
-        public void mostrarFacturaMensualSocio() //falta 
+        public void mostrarFacturaMensualSocio()  
         {
-          
-        }
+            //comprobar si existe 
+            //busco objeto socio
+            //identificar tipo socio
+            //busco inscripciones
+            //aplica descuento
+            //mostrar 
+            Console.WriteLine("Por favor,indique su numero de socio:");
+            string num = Console.ReadLine();
 
+            string nombre = socioController.getNumeroSocio(num);
+            if (!nombre.Equals(""))
+            {
+                Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
+                Console.WriteLine("Indique que tipo de socio eres 1/Estandar 2/Federado 3/Infantil");
+                string tipo=Console.ReadLine();
+                switch(tipo)
+                {
+                    case "1":
+                        Console.WriteLine("Indique el mes,para poder mostrar factura");
+                        string mesEstandar=Console.ReadLine();  
+                        break;
+                    case "2":
+                        Console.WriteLine("Indique el mes,para poder mostrar factura");
+                        string mesfederado=Console.ReadLine();  
+                        break;
+                    case "3":
+                        Console.WriteLine("Indique el mes,para poder mostrar factura");
+                        string mesInfantil=Console.ReadLine();  
+                        break;  
+                }
+            }
+            else
+            {
+                Console.WriteLine("Socio inexistente");
+            }
+        } 
         public static int seleccionarTipoSocio() 
         { 
             int opcion;

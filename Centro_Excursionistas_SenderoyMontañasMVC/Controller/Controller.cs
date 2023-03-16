@@ -54,7 +54,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             } while (!salir);
         }
 
-        public void gestionMenuExcursiones()  //OK
+        public void gestionMenuExcursiones()  
         {
             ExcursionController excursionController=new ExcursionController(datos);
 

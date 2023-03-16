@@ -9,17 +9,27 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
     internal class Inscripcion
     {
         private string num_inscripcion;
-        private Socio Socio;
-        private Excursion Excursion; 
+        private Socio socio;
+        private Excursion excursion; 
 
         public string Num_inscripcion { get => num_inscripcion; set => num_inscripcion = value; }
-        internal Socio Socio1 { get => Socio; set => Socio = value; }
-        internal Excursion Excursion1 { get => Excursion; set => Excursion = value; }
+        internal Socio Socio { get => socio; set => socio = value; }
+        internal Excursion Excursion { get => excursion; set => excursion = value; }
 
         public override string ToString()
         {
-            return "\t"+num_inscripcion+Socio+Excursion; 
-        } 
+            if (socio is Federado)
+            {
+                Decimal total = excursion.Precio - excursion.Precio * 10 / 100;
+                return "\t" + num_inscripcion + "\t" + Socio.Nombre + "\t" + Socio.Num_socio + "\t" + Excursion.Descripcion + "\t" + Excursion.Fecha + "\t" + total;
+            }
+            else
+            {
+
+
+                return "\t" + num_inscripcion + "\t" + Socio.Nombre + "\t" + Socio.Num_socio + "\t" + Excursion.Descripcion + "\t" + Excursion.Fecha + "\t" + Excursion.Precio;
+            }
+        }
     }
 
 } 

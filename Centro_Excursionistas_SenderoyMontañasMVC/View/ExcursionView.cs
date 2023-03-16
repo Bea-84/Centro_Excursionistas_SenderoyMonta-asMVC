@@ -27,12 +27,12 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             Hashtable excursionHash=new Hashtable();
 
             Console.WriteLine("Por favor,introduzca el código de la excursión seleccionada");
-            int codigo=int.Parse(Console.ReadLine());
+            string codigo=Console.ReadLine();
 
             string descripcion = excursionController.getCodigo(codigo); 
             if(!descripcion.Equals("")) 
             {
-                Console.WriteLine("La excursión con la siguiente descripción"+descripcion+"\t esta completa"); 
+                Console.WriteLine("La excursión con la siguiente descripción\t"+descripcion+"\t no está disponible"); 
             }
             else
             {
@@ -49,8 +49,8 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
                 excursionHash.Add("Código", codigo);
                 excursionHash.Add("Descripción", descripcion);
                 excursionHash.Add("Fecha",fecha);
-                excursionHash.Add("Num_dias",num_dias);
                 excursionHash.Add("Precio", precio);
+                excursionHash.Add("Num_dias", num_dias);
 
                 excursionController.añadirCliente(excursionHash); 
             } 
@@ -80,4 +80,4 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             } 
         }  
     }   
-}
+} 

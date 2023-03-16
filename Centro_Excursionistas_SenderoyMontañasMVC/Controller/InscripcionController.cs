@@ -56,17 +56,26 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 
             InscripcionView inscripcionView = new InscripcionView(inscripcionController);
 
-            inscripcionView.añadirInscripcion();
+            inscripcionView.añadirInscripcion(); 
         }
 
         public void eliminarInscripcion()
         {
+            InscripcionController inscripcionController = new InscripcionController(Datos);
 
+            InscripcionView inscripcionView = new InscripcionView(inscripcionController);
+
+            inscripcionView.eliminarInscripcion();
         }
 
         public void mostrarInscripcion()
         {
+            
+            InscripcionController inscripcionController = new InscripcionController(Datos);
 
+            InscripcionView inscripcionView=new InscripcionView(inscripcionController);
+
+            inscripcionView.mostrarInscripcion(); 
         }
 
         //--------------------------------------------------------------------------------------------------------------
@@ -84,7 +93,50 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             Datos.addInscripcion(incripcionHash); 
         }
 
-    }
+        public void añadirSocioEstandar(Hashtable estandarHash)
+        {
+            Datos.addSocioEstandar(estandarHash); 
+        }
+
+        public void añadirSocioFederado(Hashtable federadoHash)
+        {
+            Datos.addSocioFederado(federadoHash);
+        }
+
+        public void añadirSocioInfantil(Hashtable infantilHash)
+        {
+            Datos.addSocioInfantil(infantilHash);
+        }
+
+        public List<string> getInscripcion(string num)
+        {
+            return Datos.getInscripcionesPorSocio(num);
+        } 
+
+        public void eliminarInscripcion2(string num_inscripcion)
+        {
+            Datos.eliminarInscripcionByNum(num_inscripcion);
+        }
+
+        public Excursion getExcursion(string codigo)
+        {
+            return Datos.getExcursion(codigo); 
+        }
+        public string getDescripcionExcursion(string codigo)
+        {
+            string descripcionExcursion = Datos.getDescripcionExcursionByCodigo(codigo);
+            return descripcionExcursion;
+        } 
+
+
+
+
+
+
+
+
+
+    }  
 
   
 }

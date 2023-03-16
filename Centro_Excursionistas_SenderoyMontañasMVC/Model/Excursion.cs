@@ -9,13 +9,13 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
     internal class Excursion
     {
         private int precio;
-        private int codigo;
+        private string codigo;
         private string descripcion;
         private DateTime fecha;
         private int num_dias;
 
         public int Precio { get => precio; set => precio = value; }
-        public int Codigo { get => codigo; set => codigo = value; }
+        public string Codigo { get => codigo; set => codigo = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public int Num_dias { get => num_dias; set => num_dias = value; }
