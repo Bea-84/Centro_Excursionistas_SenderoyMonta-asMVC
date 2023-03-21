@@ -16,7 +16,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
         internal Socio Socio { get => socio; set => socio = value; }
         internal Excursion Excursion { get => excursion; set => excursion = value; }
 
-        public override string ToString()
+        public override string ToString() 
         {
             if (socio is Federado)
             {
@@ -25,11 +25,9 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             }
             else
             {
-
-
                 return "\t" + num_inscripcion + "\t" + Socio.Nombre + "\t" + Socio.Num_socio + "\t" + Excursion.Descripcion + "\t" + Excursion.Fecha + "\t" + Excursion.Precio;
             }
-        }
+        } 
     }
 
 } 

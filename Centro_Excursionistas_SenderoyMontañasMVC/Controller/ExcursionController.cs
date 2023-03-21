@@ -86,5 +86,6 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             string descripcionExcursion = datos.getDescripcionExcursionByCodigo(codigo);
             return descripcionExcursion;
         } 
+
     }  
 } 

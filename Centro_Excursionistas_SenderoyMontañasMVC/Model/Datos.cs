@@ -165,6 +165,19 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return null;
         }
 
+        public Socio getSocioByNum(string num)
+        {
+            foreach (Socio socio in socios)
+            {
+                if (socio.Num_socio.Equals(num))
+                {
+                    return socio;
+                }
+
+            }
+            return null;
+        } 
+
         public void addSocioFederado(Hashtable federadoHash)
         {
             Federado federado = new Federado();
@@ -351,10 +364,77 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return null;
         }
 
+        public List<string> getInscripcionesByMes(int mes) 
+        {
+            List<string> listaInscripciones = new List<string>();
+
+            foreach(Inscripcion inscripcion in inscripciones)
+            {
+               if(inscripcion.Excursion.Fecha.Month==mes) //inscripciones x mes 
+               {
+                       listaInscripciones.Add(inscripcion.ToString());
+               }
+            }
+            return listaInscripciones; 
+        }
+
+        public decimal totalFactura(int mes, string num) 
+        {
+            decimal precio=0;
+            decimal totalExcursiones =0;
+            decimal total =0;
+        
+            foreach (Inscripcion inscripcion in inscripciones)
+            {
+                if (inscripcion.Excursion.Fecha.Month == mes && inscripcion.Socio.Num_socio.Equals(num)) //excursiones x mes
+                {
+                    precio=inscripcion.Excursion.Precio;
+                    totalExcursiones += precio;
+                   
+                }
+
+            }
+            Socio socio = getSocioByNum(num); //socio x numero  
+            if (socio is Estandar)
+            {
+                if((socio as Estandar).Seguro.TipoSeguro==TipoSeguro.basico)
+                {
+                    decimal cuotaEstandar = 10;
+                    decimal seguro = (socio as Estandar).Seguro.Precio;
+                    total = cuotaEstandar + totalExcursiones+seguro; 
+                }
+                else
+                {
+                    decimal cuotaEstandar = 10;
+                    decimal seguro = (socio as Estandar).Seguro.Precio;
+                    total = cuotaEstandar + totalExcursiones+seguro;
+                }
+                
+            }
+            else if (socio is Federado)
+            {
+                decimal cuotaFederado = 10*5/100;
+                total = cuotaFederado + totalExcursiones - totalExcursiones*10/100;
+
+            }
+            else
+            {
+                decimal cuotaInfantil = 10*50/100;
+                total = cuotaInfantil + totalExcursiones;
+                
+            }
+            return total;
+        }  
+
+
       
 
 
-       
+
+
+
+
+
 
 
 

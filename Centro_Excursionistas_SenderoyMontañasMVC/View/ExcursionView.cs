@@ -32,7 +32,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             string descripcion = excursionController.getCodigo(codigo); 
             if(!descripcion.Equals("")) 
             {
-                Console.WriteLine("La excursión con la siguiente descripción\t"+descripcion+"\t no está disponible"); 
+                Console.WriteLine("La excursión con la siguiente descripción\t"+descripcion+"\t está completa"); 
             }
             else
             {
@@ -72,12 +72,12 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
             //devolvera las excursiones que hay entre estas dos fechas
 
-            Console.WriteLine("Excursiones disponibles en las fechas seleccionadas:");
-            Console.WriteLine("===================================================="); 
+            Console.WriteLine("Código excursión\tdescripción excursión\tfecha excursión\tprecio excursión\tduración excursión:");
+            Console.WriteLine("==============================================================================================="); 
             foreach(string excursionstring in listaExcursiones)
             {
                 Console.WriteLine(excursionstring);
             } 
         }  
     }   
-} 
+}  

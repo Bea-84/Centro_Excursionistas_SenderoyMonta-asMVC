@@ -165,9 +165,20 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             Datos.eliminarSocio(num);
         }
 
-      
+        public List<string> getInscripcion(string num)
+        {
+            return Datos.getInscripcionesPorSocio(num);
+        }
 
-      
+        public List<string> getInscripcionMensual(int mes)
+        {
+            return Datos.getInscripcionesByMes(mes); 
+        }
+
+        public decimal getTotal(int mes,string num)   
+        {
+            return Datos.totalFactura(mes,num);
+        }
 
     }   
 } 
