@@ -282,12 +282,20 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
 
         //-----------------------------------------------------------------------------------------------------------------------------------
 
-        //inscripciones 
+        //inscripciones  
+
+        private static int numInscripcion = 1; //declaro variable
+
+        public int getNewNumInscripcion() //método para asignar num de inscripción 
+        {
+            numInscripcion++;
+            return numInscripcion; 
+        }
 
         public void addInscripcion(Hashtable inscripcionHash)
         {
             Inscripcion inscripcion = new Inscripcion();
-            inscripcion.Num_inscripcion = (string)inscripcionHash["Numero inscripcion"];
+            inscripcion.Num_inscripcion = (int)inscripcionHash["Numero inscripcion"];
 
             string numerosocio = (string)inscripcionHash["Socio"];
             Socio socio = getNombreSocio(numerosocio); 
@@ -340,11 +348,11 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             return listaInscripciones; 
         }  
 
-        public void eliminarInscripcionByNum(string num_inscripcion)
+        public void eliminarInscripcionByNum(int num_inscripcion)
         {
             foreach(Inscripcion inscripcion in inscripciones)
             {
-                if(inscripcion.Num_inscripcion.Equals(num_inscripcion) && inscripcion.Excursion.Fecha > DateTime.Today)
+                if(inscripcion.Num_inscripcion == num_inscripcion && inscripcion.Excursion.Fecha > DateTime.Today)
                 {
                     inscripciones.Remove(inscripcion); 
                     return;

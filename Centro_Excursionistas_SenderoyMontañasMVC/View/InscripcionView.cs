@@ -24,7 +24,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             inscripcionController = pinscripcionController;
         }
 
-        public void añadirInscripcion()
+        public void añadirInscripcion() 
         {
             Hashtable inscripcionHash = new Hashtable();
 
@@ -36,8 +36,8 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             if (!nombre.Equals(""))
             {
                 Console.WriteLine("Socio ya registrado un saludo\t" + nombre);
-                Console.WriteLine("A continuación indique su numero de inscripción");
-                string num_inscripcion = Console.ReadLine();
+                int num_inscripcion = inscripcionController.newInscripcion();
+                Console.WriteLine("Su número de inscripción es"+"\t"+num_inscripcion+"\t"+"recuérdelo para posteriores consultas"); 
                 Console.WriteLine("Seleccione código excursión:");
                 string codExcursion = Console.ReadLine();
 
@@ -59,7 +59,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
                     case "1":
                         Hashtable estandarHash = new Hashtable();
                         Console.WriteLine("Indique su numero de socio");
-                        string numEstandar = Console.ReadLine();
+                        string numEstandar=Console.ReadLine();
                         Console.WriteLine("Indique su nombre:");
                         string nomEstandar = Console.ReadLine();
                         Console.WriteLine("Indique su nif");
@@ -96,7 +96,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
                         break;
                     case "3":
-                        Hashtable infantilHash = new Hashtable();
+                        Hashtable infantilHash = new Hashtable(); 
                         Console.WriteLine("Indique su numero de socio");
                         string numInfantil = Console.ReadLine();
                         Console.WriteLine("Indique su nombre:");
@@ -114,8 +114,8 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
                         break;
                 }
 
-                Console.WriteLine("A continuación indique su numero de inscripción");
-                string num_inscripcion = Console.ReadLine();
+                int num_inscripcion = inscripcionController.newInscripcion();
+                Console.WriteLine("Su numero de inscripcion es"+"\t"+num_inscripcion + "\t"+"recuérdelo para posteriores consultas");  
                 Console.WriteLine("Seleccione código excursión:");
                 string codExcursion = Console.ReadLine();
 
@@ -126,7 +126,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
                 inscripcionController.añadirInscripcion2(inscripcionHash);
 
-            }
+            } 
 
         }
 
@@ -139,7 +139,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             if(!nombre.Equals(""))
             {
                 Console.WriteLine("Para eliminar inscripción indique su numero de inscripción:");
-                string num_inscripcion = Console.ReadLine();
+                int num_inscripcion = int.Parse(Console.ReadLine()); 
 
                 inscripcionController.eliminarInscripcion2(num_inscripcion);  
             }
@@ -178,4 +178,4 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
 
             
         } 
-}   }
+}   } 

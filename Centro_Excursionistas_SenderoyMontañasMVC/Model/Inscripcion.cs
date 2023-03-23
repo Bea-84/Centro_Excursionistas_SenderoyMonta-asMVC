@@ -8,11 +8,11 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
 {
     internal class Inscripcion
     {
-        private string num_inscripcion;
+        private int num_inscripcion; 
         private Socio socio;
         private Excursion excursion; 
 
-        public string Num_inscripcion { get => num_inscripcion; set => num_inscripcion = value; }
+        public int Num_inscripcion { get => num_inscripcion; set => num_inscripcion = value; }
         internal Socio Socio { get => socio; set => socio = value; }
         internal Excursion Excursion { get => excursion; set => excursion = value; }
 

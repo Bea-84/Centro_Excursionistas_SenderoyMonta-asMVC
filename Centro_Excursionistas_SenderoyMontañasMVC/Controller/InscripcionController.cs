@@ -82,6 +82,11 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 
         //métodos programa
 
+        public int newInscripcion() //método para nuevo numero inscripción
+        {
+            int newInscripcion = Datos.getNewNumInscripcion();
+            return newInscripcion;
+        }
         public string getNumeroSocio(string num)
         {
             string nombre = Datos.getNombreSocioByNum(num);
@@ -108,12 +113,12 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             Datos.addSocioInfantil(infantilHash);
         }
 
-        public List<string> getInscripcion(string num)
+        public List<string> getInscripcion(string num) 
         {
             return Datos.getInscripcionesPorSocio(num);
         } 
 
-        public void eliminarInscripcion2(string num_inscripcion)
+        public void eliminarInscripcion2(int num_inscripcion)
         {
             Datos.eliminarInscripcionByNum(num_inscripcion);
         }
