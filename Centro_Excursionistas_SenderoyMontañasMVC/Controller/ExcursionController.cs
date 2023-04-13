@@ -18,9 +18,9 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
         {
             datos = pdatos;
             menuView = new MenuView();
-            
-        }  
-        
+
+        }
+
         public void gestionMenuExcursiones()
         {
             bool salir = false;
@@ -28,7 +28,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 
             do
             {
-                opcion = menuView.vistaMenuGestionExcursione(); 
+                opcion = menuView.vistaMenuGestionExcursione();
                 switch (opcion)
                 {
                     case "1":
@@ -37,17 +37,30 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
                     case "2":
                         mostrarExcursionComprendidasPorfecha();
                         break;
-                 
-
+                    case "3":
+                        grabarExcursionesFicheroCSV();
+                        break;
+                    case "4":
+                        leerExcursionesFicheroCSV();
+                        break;
+                    case "5":
+                        eliminarDatosExcursionesFicheroCSV(); 
+                        break;
+                    case "6":
+                        limpiarList();
+                        break;
+                    case "7":
+                        llenarList(); 
+                        break; 
                     case "0":
                         salir = true;
                         break;
                 }
 
-            } while (!salir);
+            } while (!salir);  
         }
 
-        //métodos menú
+        //métodos menú 
 
         public void añadirExcursion()
         {
@@ -67,7 +80,52 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             excursionView.mostrarExcursionComprendidasPorfecha();
 
         }
-        
+
+        public void grabarExcursionesFicheroCSV()
+        {
+            ExcursionController excursionController = new ExcursionController(datos);
+
+            ExcursionView excursionView = new ExcursionView(excursionController);
+
+            excursionView.grabarFicheroExcursion();
+        }
+
+        public void leerExcursionesFicheroCSV()
+        {
+            ExcursionController excursionController = new ExcursionController(datos);
+
+            ExcursionView excursionView = new ExcursionView(excursionController);
+
+            excursionView.leerFicheroExcursion();
+        }
+
+        public void eliminarDatosExcursionesFicheroCSV()
+        {
+            ExcursionController excursionController = new ExcursionController(datos);
+
+            ExcursionView excursionView = new ExcursionView(excursionController);
+
+            excursionView.eliminarFicheroExcursion(); 
+        }
+
+        public void limpiarList()
+        {
+            ExcursionController excursionController = new ExcursionController(datos);
+
+            ExcursionView excursionView = new ExcursionView(excursionController);
+
+            excursionView.vaciarList(); 
+        }
+
+        public void llenarList()
+        {
+            ExcursionController excursionController = new ExcursionController(datos);
+
+            ExcursionView excursionView = new ExcursionView(excursionController);
+
+            excursionView.llenarList(); 
+        }
+
         //----------------------------------------------------------------------------------------------------------------------------
 
         //métodos programa 
@@ -76,16 +134,43 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
             datos.addExcursion(excursionHash);
         }
 
-        public List<string> getFecha(DateTime fechaInicio,DateTime fechaFin)
+        public List<string> getFecha(DateTime fechaInicio, DateTime fechaFin)
         {
-             return datos.getExcursionPorFecha(fechaInicio,fechaFin); 
+            return datos.getExcursionPorFecha(fechaInicio, fechaFin);
         }
 
         public string getCodigo(string codigo)
         {
             string descripcionExcursion = datos.getDescripcionExcursionByCodigo(codigo);
             return descripcionExcursion;
-        } 
+        }
+
+        public void grabarExcursion(Hashtable excursionHash)
+        {
+            datos.grabarExcursionFicheroCSV(excursionHash);
+        }
+
+        public void leerExcursion(Hashtable excursionHash)
+        {
+            datos.leerExcursionFicheroCSV(excursionHash);
+        }
+
+        public void limpiarFichero(Hashtable excursionHash)
+        {
+            datos.eliminarFicheroCSV(excursionHash); 
+        }
+
+        public void limpiarList2() 
+        {
+            datos.clearList();   
+        }
+
+        public void llenarList2()
+        {
+            datos.fillList(); 
+        }
+            
+
 
     }  
 } 

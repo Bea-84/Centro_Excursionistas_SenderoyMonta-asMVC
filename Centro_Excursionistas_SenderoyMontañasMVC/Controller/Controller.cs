@@ -8,7 +8,7 @@ using Centro_Excursionistas_SenderoyMontañasMVC.Model;
 
 namespace Centro_Excursionistas_SenderoyMontañasMVC.Controller
 {
-    internal class Controller
+    internal class Controller  
     {
         Datos datos;
         MenuView vista;

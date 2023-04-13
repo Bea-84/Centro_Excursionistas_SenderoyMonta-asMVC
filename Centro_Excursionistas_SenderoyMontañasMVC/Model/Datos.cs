@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
             federacion.Nombre = "On";
             federacion.Codigo = "1";
             federaciones.Add(federacion);
-            federacion = new Federacion(); //creo objeto federación 2
+            federacion = new Federacion(); //creo objeto federación 2  
             federacion.Nombre = "In";
             federacion.Codigo = "2";
             federaciones.Add(federacion);
@@ -86,6 +87,75 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.Model
                 }
             }
             return listaExcursiones;
+        }
+
+        public void grabarExcursionFicheroCSV(Hashtable excursionHash)  
+        {
+            StreamWriter fichero = new StreamWriter(@"c:\CSV\excursiones.csv");
+            //creo fichero 
+            string texto = "";
+
+            foreach (Excursion excursion in excursiones)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                texto = excursion.Precio+"\t"+","+excursion.Codigo+"\t"+","+excursion.Descripcion+"\t"+","+excursion.Fecha+"\t"+","+excursion.Num_dias; 
+                fichero.WriteLine(texto);
+                Console.ForegroundColor = ConsoleColor.Gray; 
+            }
+            
+            fichero.Close(); 
+        }
+
+        public void leerExcursionFicheroCSV(Hashtable excursionHash) 
+        {
+            string fichero = @"C:\csv\excursiones.csv"; 
+            StreamReader archivo = new StreamReader(fichero);
+            string linea = "";
+
+
+            while (linea  != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(linea);
+                linea = archivo.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Gray; 
+            } 
+
+            archivo.Close(); 
+        }
+
+        public void eliminarFicheroCSV(Hashtable excursionHash) 
+        {
+            string fichero = @"C:\csv\excursiones.csv";
+            File.Delete(fichero); 
+        }  
+
+        public  void clearList()
+        {
+            excursiones.Clear();   
+        }
+
+        public void fillList()
+        {
+            string fichero = @"C:\csv\excursiones.csv";
+            StreamReader archivo = new StreamReader(fichero);
+            string linea;            
+            while ((linea = archivo.ReadLine()) != null)
+            {
+
+                string[] fila = linea.Split(','); //método lee string que hay almacenado en el fichero 
+                Excursion excursion = new Excursion();
+                excursion.Precio = int.Parse(fila[0]);
+                excursion.Codigo= fila[1];
+                excursion.Descripcion= fila[2];
+                excursion.Fecha = DateTime.Parse(fila[3]);
+                excursion.Num_dias=int.Parse(fila[4]);
+                excursiones.Add(excursion);
+                Console.WriteLine("Datos cargados");  
+
+            }
+
+            archivo.Close();
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------//

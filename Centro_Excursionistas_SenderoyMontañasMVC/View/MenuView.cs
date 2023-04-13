@@ -20,11 +20,16 @@ namespace Centro_Excursionistas_SenderoyMontañasMVC.View
             return opcion;
         }
 
-        public string vistaMenuGestionExcursione() 
+        public string vistaMenuGestionExcursione()   
         {
             string opcion;
             Console.WriteLine("1. Añadir excursión");
             Console.WriteLine("2. Mostrar excursiones con filro entre fechas");
+            Console.WriteLine("3. Grabar excursiones a fichero CSV");
+            Console.WriteLine("4. Leer excursiones fichero CSV");
+            Console.WriteLine("5. Eliminar fichero excursiones CSV"); 
+            Console.WriteLine("6. Limpiar List excursiones");  
+            Console.WriteLine("7. Llenar List excursiones"); 
             Console.WriteLine("0. Salir");
             opcion = pedirOpcionMenu();
             return opcion;
